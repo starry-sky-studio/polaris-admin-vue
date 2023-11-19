@@ -23,12 +23,7 @@ export default defineConfig({
         'vue',
         'vue-router',
         {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar'
-          ]
+          'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']
         },
         // custom
         {

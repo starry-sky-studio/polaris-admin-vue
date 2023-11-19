@@ -1,26 +1,21 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 87%);
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
 #app {
   width: 100vw;
   height: 100vh;
 }
-
-
