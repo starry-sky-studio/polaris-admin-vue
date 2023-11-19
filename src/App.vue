@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import test from '@/components/test.vue'
 </script>
 
 <template>
   <div>
-    <n-button type="primary"> Primary </n-button>
+    <test />
+    <n-button type="primary">
+      Primary
+      <!-- {{ import.meta.url }} -->
+    </n-button>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <!-- <HelloWorld msg="Vite + Vue" /> -->
+  <router-view />
 </template>
 
 <style scoped>

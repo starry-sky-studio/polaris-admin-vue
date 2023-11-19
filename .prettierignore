@@ -2,5 +2,6 @@
 pnpm-lock.yaml
 public
 src-tauri
-@types/auto-imports.d.ts
-@types/components.d.ts
+
+auto-imports.d.ts
+components.d.ts
