@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "dayjs": "^1.11.10",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "scss": "^0.2.4",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.2",
     "@commitlint/config-conventional": "^18.4.2",
+    "@types/nprogress": "^0.2.3",
     "@types/vue-router": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",

@@ -14,7 +14,7 @@ export default defineConfig({
       eslintrc: {
         enabled: true // <-- this
       },
-      dts: true, // or a custom path
+      dts: 'src/auto-imports.d.ts', // or a custom path
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
@@ -24,6 +24,7 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
+        'pinia',
         {
           'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']
         },
