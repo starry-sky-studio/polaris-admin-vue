@@ -9,8 +9,8 @@
     "plugin:vue/vue3-essential"
   ],
   "parserOptions": {
+    "parser": "vue-eslint-parser",
     "ecmaVersion": "latest",
-    "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "vue"],

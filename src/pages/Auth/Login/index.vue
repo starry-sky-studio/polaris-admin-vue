@@ -37,39 +37,31 @@ const handleLogin = () => {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col justify-start items-center w-full h-full">
+    <div class="text-2xl pb-4 text-[#333] bg-amber-300">登录</div>
+
     <n-form
       ref="formRef"
-      :label-width="80"
       :model="formData"
       :rules="rules"
+      class="w-full bg-green-700"
     >
-      <n-form-item
-        label="用户名"
-        path="user.name"
-      >
+      <n-form-item path="username">
         <n-input
           v-model:value="formData.username"
           placeholder="输入用户名"
         />
       </n-form-item>
 
-      <n-form-item
-        label="密码"
-        path="phone"
-      >
+      <n-form-item path="password">
         <n-input
           v-model:value="formData.password"
           placeholder="请输入密码"
         />
       </n-form-item>
+
       <n-form-item>
-        <n-button
-          attr-type="button"
-          @click="handleLogin"
-        >
-          登录
-        </n-button>
+        <n-button type="primary"> 验证 </n-button>
       </n-form-item>
     </n-form>
   </div>
