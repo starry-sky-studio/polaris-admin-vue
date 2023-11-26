@@ -12,6 +12,11 @@ export const routes = [
           title: '首页'
         }
       },
+      {
+        path: '/file',
+        name: 'file',
+        component: () => import('@/pages/file/index.vue')
+      },
 
       {
         path: `/500`,
