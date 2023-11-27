@@ -66,7 +66,7 @@ export class LangUtils {
    * LangUtils.getDefultLang()
    * ```
    */
-  static getDefultLang(): string {
-    return this.getLang() ?? this.getBrowserLang() ?? Lang['zh-CN']
+  static getDefultLang(): Lang {
+    return (this.getLang() ?? this.getBrowserLang() ?? Lang['zh-CN']) as Lang
   }
 }

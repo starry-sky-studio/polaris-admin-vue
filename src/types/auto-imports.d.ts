@@ -6,15 +6,26 @@
 export {}
 declare global {
   const AppMetadata: typeof import('@/constants')['AppMetadata']
+  const AuthUtils: typeof import('../utils/auth')['AuthUtils']
   const BasePageModel: typeof import('@/constants')['BasePageModel']
   const EffectScope: typeof import('vue')['EffectScope']
   const GlobalEnvConfig: typeof import('@/constants')['GlobalEnvConfig']
+  const LangUtils: typeof import('../utils/lang')['LangUtils']
+  const NAvatar: typeof import('naive-ui')['NAvatar']
+  const NButton: typeof import('naive-ui')['NButton']
+  const NEllipsis: typeof import('naive-ui')['NEllipsis']
+  const NIcon: typeof import('naive-ui')['NIcon']
+  const NImage: typeof import('naive-ui')['NImage']
+  const NInput: typeof import('naive-ui')['NInput']
+  const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
+  const NTag: typeof import('naive-ui')['NTag']
   const ThemeUtils: typeof import('../utils/theme')['ThemeUtils']
   const UploadAPI: typeof import('../api/files')['UploadAPI']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const axios: typeof import('axios')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
+  const createDiscreteApi: typeof import('naive-ui')['createDiscreteApi']
   const createPinia: typeof import('pinia')['createPinia']
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
@@ -75,6 +86,7 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDialog: typeof import('naive-ui')['useDialog']
+  const useLangStore: typeof import('../store/lang')['useLangStore']
   const useLink: typeof import('vue-router')['useLink']
   const useLoadingBar: typeof import('naive-ui')['useLoadingBar']
   const useMessage: typeof import('naive-ui')['useMessage']
@@ -95,6 +107,8 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
   // @ts-ignore
+  export type { DataTableBaseColumn, DataTableColumn, DataTableColumns, DataTableCreateSummary, DropdownOption, FormInst, FormItemInst, FormItemRule, FormRules, FormValidationError, MenuInst, MenuOption, UploadCustomRequestOptions, UploadFileInfo, UploadInst } from 'naive-ui'
+  // @ts-ignore
   export type { RouteLocationRaw } from 'vue-router'
 }
 // for vue template auto import
@@ -102,13 +116,24 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly AppMetadata: UnwrapRef<typeof import('@/constants')['AppMetadata']>
+    readonly AuthUtils: UnwrapRef<typeof import('../utils/auth')['AuthUtils']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LangUtils: UnwrapRef<typeof import('../utils/lang')['LangUtils']>
+    readonly NAvatar: UnwrapRef<typeof import('naive-ui')['NAvatar']>
+    readonly NButton: UnwrapRef<typeof import('naive-ui')['NButton']>
+    readonly NEllipsis: UnwrapRef<typeof import('naive-ui')['NEllipsis']>
+    readonly NIcon: UnwrapRef<typeof import('naive-ui')['NIcon']>
+    readonly NImage: UnwrapRef<typeof import('naive-ui')['NImage']>
+    readonly NInput: UnwrapRef<typeof import('naive-ui')['NInput']>
+    readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
+    readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
     readonly ThemeUtils: UnwrapRef<typeof import('../utils/theme')['ThemeUtils']>
     readonly UploadAPI: UnwrapRef<typeof import('../api/files')['UploadAPI']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createDiscreteApi: UnwrapRef<typeof import('naive-ui')['createDiscreteApi']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -169,6 +194,7 @@ declare module 'vue' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
+    readonly useLangStore: UnwrapRef<typeof import('../store/lang')['useLangStore']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
     readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
@@ -188,13 +214,24 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly AppMetadata: UnwrapRef<typeof import('@/constants')['AppMetadata']>
+    readonly AuthUtils: UnwrapRef<typeof import('../utils/auth')['AuthUtils']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LangUtils: UnwrapRef<typeof import('../utils/lang')['LangUtils']>
+    readonly NAvatar: UnwrapRef<typeof import('naive-ui')['NAvatar']>
+    readonly NButton: UnwrapRef<typeof import('naive-ui')['NButton']>
+    readonly NEllipsis: UnwrapRef<typeof import('naive-ui')['NEllipsis']>
+    readonly NIcon: UnwrapRef<typeof import('naive-ui')['NIcon']>
+    readonly NImage: UnwrapRef<typeof import('naive-ui')['NImage']>
+    readonly NInput: UnwrapRef<typeof import('naive-ui')['NInput']>
+    readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
+    readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
     readonly ThemeUtils: UnwrapRef<typeof import('../utils/theme')['ThemeUtils']>
     readonly UploadAPI: UnwrapRef<typeof import('../api/files')['UploadAPI']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createDiscreteApi: UnwrapRef<typeof import('naive-ui')['createDiscreteApi']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
@@ -255,6 +292,7 @@ declare module '@vue/runtime-core' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
+    readonly useLangStore: UnwrapRef<typeof import('../store/lang')['useLangStore']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
     readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>

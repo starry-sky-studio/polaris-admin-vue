@@ -38,9 +38,6 @@ export default defineConfig(({ mode }) => {
           'vue',
           'vue-router',
           'pinia',
-          {
-            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']
-          },
           // custom
           {
             '@vueuse/core': [
@@ -50,7 +47,43 @@ export default defineConfig(({ mode }) => {
             ],
             axios: [
               ['default', 'axios'] // import { default as axios } from 'axios',
+            ],
+            'naive-ui': [
+              'useDialog',
+              'useMessage',
+              'useNotification',
+              'useLoadingBar',
+              'createDiscreteApi',
+              'NButton',
+              'NTag',
+              'NIcon',
+              'NPopconfirm',
+              'NInput',
+              'NAvatar',
+              'NImage',
+              'NEllipsis'
             ]
+          },
+          {
+            from: 'naive-ui',
+            imports: [
+              'DataTableBaseColumn',
+              'DataTableColumn',
+              'DataTableColumns',
+              'DataTableCreateSummary',
+              'DropdownOption',
+              'FormInst',
+              'FormItemInst',
+              'FormItemRule',
+              'FormRules',
+              'FormValidationError',
+              'MenuInst',
+              'MenuOption',
+              'UploadCustomRequestOptions',
+              'UploadFileInfo',
+              'UploadInst'
+            ],
+            type: true
           },
           {
             from: '@/constants',

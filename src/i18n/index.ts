@@ -1,23 +1,17 @@
-import VueI18n from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
+import { Lang } from '@/types'
 
-// 准备翻译的语言环境信息
-const messages = {
-  en: {
-    message: {
-      hello: 'hello world'
-    }
-  },
-  ja: {
-    message: {
-      hello: 'こんにちは、世界'
-    }
+import en_US from '@/locales/common/en-US.json'
+import zh_CN from '@/locales/common/zh-CN.json'
+
+const i18n = createI18n({
+  legacy: false,
+  locale: Lang['zh-CN'], // set locale
+  fallbackLocale: Lang['zh-CN'], // set fallback locale
+  messages: {
+    [Lang['en-US']]: en_US,
+    [Lang['zh-CN']]: zh_CN
   }
-}
-const i18n = VueI18n.createI18n({
-  locale: 'ja', // set locale
-  fallbackLocale: 'en', // set fallback locale
-  messages // set locale messages
-  // If you need to specify other options, you can set other options
-  // ...
 })
+
 export default i18n

@@ -24,7 +24,14 @@
     },
     "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.json", "@types/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/types/auto-imports.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.json",
+    "@types/**/*.d.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

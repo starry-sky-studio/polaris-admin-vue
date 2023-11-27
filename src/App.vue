@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { darkTheme, lightTheme } from 'naive-ui'
-
-import { useThemeStore } from '@/store'
+import { useThemeStore, useLangStore } from '@/store'
 const themeStore = useThemeStore()
+const langStore = useLangStore()
 </script>
 
 <template>
   <n-config-provider
-    :theme="themeStore.theme === 'light' ? lightTheme : darkTheme"
-    :theme-overrides="
-      themeStore.theme === 'light' ? themeStore.lightThemeOverrides : themeStore.darkThemeOverrides
-    "
+    :locale="langStore.naiveLang"
+    :date-locale="langStore.naiveDateLang"
+    :theme="themeStore.naiveTheme"
+    :theme-overrides="themeStore.naiveThemeOverrides"
   >
     <n-message-provider>
       <router-view />

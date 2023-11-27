@@ -2,7 +2,6 @@
 import router from '@/router'
 import { FormInst, FormItemRule, FormRules, useMessage } from 'naive-ui'
 import { ref, reactive } from 'vue'
-
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
 
@@ -110,11 +109,12 @@ const handleLogin = () => {
 </template>
 
 <style lang="scss" scoped>
-::v-deep .n-form-item.n-form-item--top-labelled {
+:deep(.n-form-item.n-form-item--top-labelled) {
   grid-template-rows: auto;
   grid-template-columns: minmax(0, 100%);
 }
-::v-deep .n-divider .n-divider__title {
+
+:deep(.n-divider .n-divider__title) {
   font-weight: 400;
 }
 </style>
