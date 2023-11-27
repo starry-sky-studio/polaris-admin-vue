@@ -61,7 +61,11 @@ const formValue = ref({
     <n-button type="success"> Success </n-button>
     <n-button type="warning"> Warning </n-button>
     <n-button type="error"> Error </n-button>
-
-    <div class="w-full h-4 bg-orange-400 dark:bg-slate-200">111</div>
+    <n-card> 我是cards </n-card>
+    <div class="w-full h-16 bg-indigo-100 dark:bg-slate-200">bg-indigo-100</div>
+    <div class="w-full h-16 bg-indigo-200 dark:bg-slate-200">bg-indigo-200</div>
+    <div class="w-full h-16 bg-indigo-300 dark:bg-slate-200">bg-indigo-300</div>
+    <div class="w-full h-16 bg-indigo-400 dark:bg-slate-200">bg-indigo-400</div>
+    <div class="w-full h-16 bg-indigo-500 dark:bg-slate-200">bg-indigo-500</div>
   </div>
 </template>

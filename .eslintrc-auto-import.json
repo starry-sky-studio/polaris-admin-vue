@@ -87,6 +87,14 @@
     "mapWritableState": true,
     "setActivePinia": true,
     "setMapStoreSuffix": true,
-    "storeToRefs": true
+    "storeToRefs": true,
+    "AppMetadata": true,
+    "BasePageModel": true,
+    "GlobalEnvConfig": true,
+    "ThemeUtils": true,
+    "UploadAPI": true,
+    "httpRequest": true,
+    "useCounterStore": true,
+    "useThemeStore": true
   }
 }

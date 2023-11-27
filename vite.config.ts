@@ -1,10 +1,12 @@
 import { defineConfig, loadEnv, ProxyOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
+
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 // import { dirname, resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
+import Icons from 'unplugin-icons/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -25,7 +27,7 @@ export default defineConfig(({ mode }) => {
         eslintrc: {
           enabled: true // <-- this
         },
-        dts: 'src/auto-imports.d.ts', // or a custom path
+        dts: 'src/types/auto-imports.d.ts', // or a custom path
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
           /\.vue$/,
@@ -50,6 +52,10 @@ export default defineConfig(({ mode }) => {
               ['default', 'axios'] // import { default as axios } from 'axios',
             ]
           },
+          {
+            from: '@/constants',
+            imports: ['AppMetadata']
+          },
           // example type import
           {
             from: 'vue-router',
@@ -57,11 +63,27 @@ export default defineConfig(({ mode }) => {
             type: true
           }
         ],
+        dirs: ['src/api/**', 'src/hooks/**', 'src/store/**', 'src/utils/**'],
+        vueTemplate: true, // 支持在 Vue 模版中使用
         // Enable auto import by filename for default module exports under directories
         defaultExportByFilename: false
       }),
       Components({
-        resolvers: [NaiveUiResolver()]
+        dts: '@types/components.d.ts',
+        resolvers: [NaiveUiResolver()],
+        types: [
+          {
+            from: 'vue-router',
+            names: ['RouterLink', 'RouterView']
+          }
+        ],
+        directives: true, // 自动导入指令
+        dirs: ['src/components', 'src/layouts', 'src/charts'],
+        extensions: ['vue']
+      }),
+      Icons({
+        // experimental
+        autoInstall: true
       })
     ],
     server: {

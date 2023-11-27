@@ -9,7 +9,7 @@
     "plugin:vue/vue3-essential"
   ],
   "parserOptions": {
-    "parser": "vue-eslint-parser",
+    "parser": "@typescript-eslint/parser",
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
@@ -18,5 +18,5 @@
     "vue/multi-word-component-names": 0,
     "@typescript-eslint/no-explicit-any": "off"
   },
-  "parser": "@typescript-eslint/parser"
+  "parser": "vue-eslint-parser"
 }

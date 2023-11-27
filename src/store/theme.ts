@@ -5,8 +5,8 @@ export const useThemeStore = defineStore('theme', () => {
 
   const lightThemeOverrides = {
     common: {
-      primaryColor: '#096DD9',
-      primaryColorHover: '#0050B3',
+      primaryColor: '#A5B4FC',
+      primaryColorHover: '#6366F1',
       primaryColorPressed: '#003A8C',
       primaryColorSuppl: '#002766'
     }
@@ -14,8 +14,8 @@ export const useThemeStore = defineStore('theme', () => {
 
   const darkThemeOverrides = {
     common: {
-      primaryColor: '#096DD9',
-      primaryColorHover: '#0050B3',
+      primaryColor: '#A5B4FC',
+      primaryColorHover: '#6366F1',
       primaryColorPressed: '#003A8C',
       primaryColorSuppl: '#002766'
     }
@@ -25,6 +25,13 @@ export const useThemeStore = defineStore('theme', () => {
     ThemeUtils.changTheme(themeParam)
     theme.value = themeParam
   }
+
+  watch(
+    () => theme.value,
+    () => changeTheme(theme.value),
+    // NOTE: 初始化时，根据系统主题设置主题模式
+    { immediate: true }
+  )
 
   return { lightThemeOverrides, darkThemeOverrides, changeTheme, theme }
 })

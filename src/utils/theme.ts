@@ -26,6 +26,7 @@ export class ThemeUtils {
   //修改主题
   static changTheme = (theme: ThemeModel) => {
     ThemeUtils.setTheme(theme)
+    console.log(theme)
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
     } else {
