@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import router from '@/router'
-import { FormInst, FormItemRule, FormRules, useMessage } from 'naive-ui'
+import { FormInst, FormItemRule, FormRules, useMessage, FormValidationError } from 'naive-ui'
 import { ref, reactive } from 'vue'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
 
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
+const [loading, dispatcher] = useLoading()
 
 const formData = reactive({
   username: 'admin',
@@ -35,8 +36,39 @@ const rules: FormRules = {
   ]
 }
 
-const handleLogin = () => {
-  console.log('11')
+const handleLogin = async () => {
+  try {
+    await formRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
+    }
+    return
+  }
+
+  loading.value = true
+
+  const sendRequest = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise((resolve, _reject) => {
+      setTimeout(() => {
+        // 模拟请求成功
+        resolve('Request successful!')
+        // 模拟请求失败
+        // reject('Request failed!');
+      }, 1000)
+    })
+  }
+
+  try {
+    await sendRequest()
+    router.push('/')
+  } catch (error) {
+    console.error('Error sending request:', error)
+  } finally {
+    dispatcher.loaded()
+  }
 }
 </script>
 
@@ -68,6 +100,7 @@ const handleLogin = () => {
           class="w-full"
           type="primary"
           @click="handleLogin"
+          :loading="loading"
         >
           登录
         </n-button>

@@ -3,7 +3,10 @@ import router from '@/router'
 import { signupModel } from '@/types'
 import { useMessage } from 'naive-ui'
 import { FormInst, FormItemRule, FormRules } from 'naive-ui'
+
 const message = useMessage()
+
+const [loading, dispatcher] = useLoading()
 
 const formData = reactive<signupModel>({
   username: '',
@@ -48,21 +51,34 @@ const handleSignup = async () => {
   try {
     await formRef.value!.validate()
   } catch (errors) {
-    console.log(errors)
-    if (errors) {
-      message.error('errors')
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
     }
     return
   }
+  loading.value = true
 
-  formRef.value?.validate((errors) => {
-    if (!errors) {
-      message.success('验证成功')
-    } else {
-      console.log(errors)
-      message.error('验证失败')
-    }
-  })
+  const sendRequest = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise((resolve, _reject) => {
+      setTimeout(() => {
+        // 模拟请求成功
+        resolve('Request successful!')
+        // 模拟请求失败
+        // reject('Request failed!');
+      }, 1000)
+    })
+  }
+
+  try {
+    await sendRequest()
+    router.push('/')
+  } catch (error) {
+    console.error('Error sending request:', error)
+  } finally {
+    dispatcher.loaded()
+  }
 }
 </script>
 
@@ -101,6 +117,7 @@ const handleSignup = async () => {
           @click="handleSignup"
           class="w-full"
           type="primary"
+          :loading="loading"
           >注册</n-button
         >
       </n-form-item>

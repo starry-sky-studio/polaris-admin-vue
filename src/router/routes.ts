@@ -13,12 +13,6 @@ export const routes = [
         }
       },
       {
-        path: '/file',
-        name: 'file',
-        component: () => import('@/pages/file/index.vue')
-      },
-
-      {
         path: `/500`,
         name: '500',
         component: () => import('@/pages/ErrorPages/500/index.vue'),
@@ -27,6 +21,16 @@ export const routes = [
           icon: 'InternalServerErrorIcon'
         }
       },
+      {
+        path: '/:pathMatch(.*)*',
+        component: () => import('@/pages/ErrorPages/404/index.vue'),
+        meta: {
+          title: '404',
+          icon: 'NotFoundIcon'
+        }
+      },
+
+      //系统功能
       {
         path: '/:pathMatch(.*)*',
         component: () => import('@/pages/ErrorPages/404/index.vue'),

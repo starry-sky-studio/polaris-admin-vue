@@ -89,6 +89,10 @@ export default defineConfig(({ mode }) => {
             from: '@/constants',
             imports: ['AppMetadata']
           },
+          {
+            from: '@/hooks',
+            imports: ['useLoading']
+          },
           // example type import
           {
             from: 'vue-router',

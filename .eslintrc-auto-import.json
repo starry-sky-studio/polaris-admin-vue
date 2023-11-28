@@ -122,6 +122,22 @@
     "MenuOption": true,
     "UploadCustomRequestOptions": true,
     "UploadFileInfo": true,
-    "UploadInst": true
+    "UploadInst": true,
+    "use2XL": true,
+    "useLG": true,
+    "useLoading": true,
+    "useMD": true,
+    "useMobile": true,
+    "useSM": true,
+    "useXL": true,
+    "/": true,
+    "@": true,
+    "k": true,
+    "o": true,
+    "s": true,
+    "renderIcon": true,
+    "useSidebarStore": true,
+    "BrowserUtils": true,
+    "SiteUtils": true
   }
 }

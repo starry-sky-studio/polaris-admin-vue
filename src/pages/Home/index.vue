@@ -89,11 +89,5 @@ const timestamp = ref(1183135260000)
       v-model:value="timestamp"
       type="date"
     />
-
-    <div class="w-full h-16 bg-indigo-100 dark:bg-slate-200">bg-indigo-100</div>
-    <div class="w-full h-16 bg-indigo-200 dark:bg-slate-200">bg-indigo-200</div>
-    <div class="w-full h-16 bg-indigo-300 dark:bg-slate-200">bg-indigo-300</div>
-    <div class="w-full h-16 bg-indigo-400 dark:bg-slate-200">bg-indigo-400</div>
-    <div class="w-full h-16 bg-indigo-500 dark:bg-slate-200">bg-indigo-500</div>
   </div>
 </template>
