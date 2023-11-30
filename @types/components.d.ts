@@ -15,6 +15,7 @@ declare module 'vue' {
     BaseLayout: typeof import('./../src/layouts/BaseLayout/index.vue')['default']
     BaseSidebar: typeof import('./../src/layouts/BaseLayout/components/BaseSidebar.vue')['default']
     BaseTabs: typeof import('./../src/layouts/BaseLayout/components/BaseTabs.vue')['default']
+    NAvatar: typeof import('naive-ui')['NAvatar']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
     NButton: typeof import('naive-ui')['NButton']
@@ -35,6 +36,7 @@ declare module 'vue' {
     NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

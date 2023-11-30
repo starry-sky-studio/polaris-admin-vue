@@ -3,7 +3,8 @@ import {
   SYSTEM_FUNCTIONS_PREFIX,
   ERROR_PAGES_PREFIX,
   CODE_TEMPLATES_PREFIX,
-  SYSTEM_TOOLS_PREFIX
+  SYSTEM_TOOLS_PREFIX,
+  MULTI_LEVEL_MENUS
 } from './prefix'
 
 import MarkdownIcon from '~icons/ri/markdown-line'
@@ -21,6 +22,7 @@ import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import FormTemplatesIcon from '~icons/material-symbols/format-list-bulleted-rounded'
 import HomeIcon from '~icons/material-symbols/home'
+import MultiMenusIcon from '~icons/ic/baseline-format-list-bulleted'
 
 export const routes = [
   {
@@ -29,7 +31,7 @@ export const routes = [
     component: () => import('@/layouts/BaseLayout/index.vue'),
     children: [
       {
-        path: '/',
+        path: '/home',
         name: 'home',
         component: () => import('@/pages/Home/index.vue'),
         meta: {
@@ -172,6 +174,64 @@ export const routes = [
         meta: {
           title: 'iframe',
           icon: IframeIcon
+        }
+      },
+
+      //多级菜单
+      {
+        path: `${MULTI_LEVEL_MENUS}/2-1/2-1-1`,
+        name: '2-1-1',
+        component: () => import('@/pages/MultiLevelMenus/2-1/2-1-1/index.vue'),
+        meta: {
+          title: '2-1-1',
+          icon: MultiMenusIcon
+        }
+      },
+      {
+        path: `${MULTI_LEVEL_MENUS}/2-1/2-1-2`,
+        name: '2-1-2',
+        component: () => import('@/pages/MultiLevelMenus/2-1/2-1-2/index.vue'),
+        meta: {
+          title: '2-1-2',
+          icon: MultiMenusIcon
+        }
+      },
+      {
+        path: `${MULTI_LEVEL_MENUS}/2-2/2-2-1`,
+        name: '2-2-1',
+        component: () => import('@/pages/MultiLevelMenus/2-2/2-2-1/index.vue'),
+        meta: {
+          title: '2-2-1',
+          icon: MultiMenusIcon
+        }
+      },
+
+      //用户信息
+      {
+        path: `user-info`,
+        name: 'user-info',
+        component: () => import('@/pages/User/UserInfo/index.vue'),
+        meta: {
+          title: '个人信息'
+        }
+      },
+
+      {
+        path: `change-password`,
+        name: 'change-password',
+        component: () => import('@/pages/User/ChangePassword/index.vue'),
+        meta: {
+          title: '修改密码',
+          icon: MultiMenusIcon
+        }
+      },
+      {
+        path: `${MULTI_LEVEL_MENUS}/2-2/2-2-1`,
+        name: '2-2-1',
+        component: () => import('@/pages/MultiLevelMenus/2-2/2-2-1/index.vue'),
+        meta: {
+          title: '2-2-1',
+          icon: MultiMenusIcon
         }
       }
     ]

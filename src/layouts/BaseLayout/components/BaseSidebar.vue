@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { MenuOption } from 'naive-ui'
-import { menuOptions } from '@/constants'
+import { MenuOption, MenuInst } from 'naive-ui'
+import { myMenuOptions } from '@/constants'
 import { useSidebarStore } from '@/store'
-import router from '@/router'
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const sidebarStore = useSidebarStore()
 
-const activeValue = ref('/')
+const menuInstRef = ref<MenuInst | null>(null)
+const menuData = ref(myMenuOptions)
+
+const activeValue = ref()
 
 const handleSidebar = (collapsed: boolean) => {
   sidebarStore.changeSidebar(collapsed)
 }
 
 const handleMenu = (key: string, item: MenuOption) => {
-  // if (item.children) {
-  //   return
-  // }
-  activeValue.value = key
-  console.log(key)
-  // router.push({ name: key })
+  if (item.children) {
+    return
+  }
+  router.push({ name: key })
 }
 </script>
 
@@ -33,13 +37,13 @@ const handleMenu = (key: string, item: MenuOption) => {
     :inverted="false"
     @update:collapsed="handleSidebar"
   >
-    {{ activeValue }}
     <n-menu
+      ref="menuInstRef"
       :value="activeValue"
       :inverted="false"
       :collapsed-width="64"
       :collapsed-icon-size="22"
-      :options="menuOptions"
+      :options="menuData"
       @update:value="handleMenu"
     />
   </n-layout-sider>

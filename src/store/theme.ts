@@ -25,6 +25,16 @@ export const useThemeStore = defineStore('theme', () => {
     theme.value = themeParam
   }
 
+  const isLightTheme = computed(() => theme.value === ThemeModel.LIGHT)
+
+  const isDarkTheme = computed(() => theme.value === ThemeModel.DARK)
+
+  const toggleTheme = () => {
+    theme.value === ThemeModel.LIGHT
+      ? (theme.value = ThemeModel.DARK)
+      : (theme.value = ThemeModel.LIGHT)
+  }
+
   watch(
     () => theme.value,
     () => changeTheme(theme.value),
@@ -38,6 +48,9 @@ export const useThemeStore = defineStore('theme', () => {
     lightThemeOverrides,
     darkThemeOverrides,
     changeTheme,
+    toggleTheme,
+    isLightTheme,
+    isDarkTheme,
     theme
   }
 })

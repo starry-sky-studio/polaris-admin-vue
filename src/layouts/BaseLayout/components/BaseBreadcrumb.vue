@@ -1,56 +1,135 @@
 <script setup lang="ts">
-import { menuOptions } from '@/constants'
-import router from '@/router'
-import { MenuOption } from 'naive-ui'
-import { useRoute } from 'vue-router'
+import { myMenuOptions, getMenuItem } from '@/constants'
+
+import { MenuOption, DropdownOption } from 'naive-ui'
+import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
-//一级菜单
-const firstLevelOptions = ref(menuOptions)
+const router = useRoute()
 
-//一级菜单路径
+//根据路由路径寻找 option
 
-const firstPath = ref()
+// const test = [
+//   {
+//     options1: [
+//       {
+//         label: '错误页面',
+//         key: 'error-pages',
+//         children: [
+//           {
+//             label: '500',
+//             key: '500'
+//           },
+//           {
+//             label: '404',
+//             key: '404'
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     options1: [
+//       {
+//         label: '错误页面',
+//         key: 'error-pages',
+//         children: [
+//           {
+//             label: '500',
+//             key: '500'
+//           },
+//           {
+//             label: '404',
+//             key: '404'
+//           }
+//         ]
+//       }
+//     ]
+//   }
+// ]
 
-//二级菜单选项
-const secondLevelOptions = ref<MenuOption[]>([])
+interface breadcrumbDataitem {
+  Option: MenuOption | undefined | MenuOption[]
+  value: string
+}
 
-//二级菜单路径
-const secondPath = ref()
+const breadcrumbData = ref<breadcrumbDataitem[]>([
+  {
+    Option: myMenuOptions,
+    value: route.meta?.title as string
+  }
+])
+//[
+// {
+//   options1: [
+//     {
+//       label: '首页',
+//       key: 'home'
+//     },
+//     {
+//       label: '首页',
+//       key: 'home',
 
-const handleSelect = (key: string) => router.push({ name: key })
+//       children: [
+//         {
+//           label: '用户管理',
+//           key: 'user-management'
+//         }
+//       ]
+//     }
+//   ]
+// },
+// {
+//   options1: [
+//     {
+//       label: 'David Tao',
+//       key: 1,
+//       children: [
+//         {
+//           label: '黑色柳丁',
+//           key: 2
+//         },
+//         {
+//           label: '黑色柳丁',
+//           key: 2
+//         }
+//       ]
+//     },
+//     {
+//       label: '黑色柳丁',
+//       key: 2
+//     }
+//   ]
+// }
+//]
+
+const handleMenus = (path: string) => {
+  console.log(path)
+
+  const pathSplit = path.split('/').filter((i) => i)
+
+  const sum = pathSplit.reduce((acc, cur) => {
+    console.log(acc, 'acc'), console.log(cur, 'cur')
+
+    const breadcrumbItem = getMenuItem(cur, myMenuOptions)
+    console.log(breadcrumbItem)
+
+    // breadcrumbData.value.push({
+    //   Option: breadcrumbItem,
+    //   value: breadcrumbItem.label
+    // })
+    return
+  }, [])
+
+  console.log(sum, 'sum')
+
+  pathSplit.forEach(() => {})
+  console.log(getMenuItem('2-1', myMenuOptions))
+}
 
 watch(
-  () => route.fullPath,
+  () => router.fullPath,
   () => {
-    console.log(route.fullPath)
-    if (route.fullPath === '/') {
-      firstLevelOptions.value = []
-      secondLevelOptions.value = []
-      return
-    }
-    const routePath = route.fullPath.split('/')
-    console.log(routePath)
-
-    const first = menuOptions.find((option) => option.key === routePath[1])
-    if (!first) {
-      secondLevelOptions.value = []
-      return
-    }
-    firstPath.value = first.label
-
-    //二级菜单
-    secondLevelOptions.value = first.children as MenuOption[]
-
-    const second = first.children?.find((option) => {
-      option.key = routePath[2]
-    })
-
-    if (!second) {
-      secondPath.value = ''
-      return
-    }
-
-    secondPath.value = second.label
+    handleMenus(router.fullPath)
   },
   {
     immediate: true
@@ -59,16 +138,17 @@ watch(
 </script>
 
 <template>
+  <div>
+    <!-- <n-button @click="handleMenus">test</n-button> -->
+  </div>
   <n-breadcrumb>
-    <!-- <n-breadcrumb-item>
-      <n-dropdown :options="firstLevelOptions">
-        <div class="trigger">{{ firstPath }}</div>
+    <n-breadcrumb-item
+      v-for="(item, index) in breadcrumbData"
+      :key="index"
+    >
+      <n-dropdown :options="item.options1">
+        <div class="trigger">1111</div>
       </n-dropdown>
     </n-breadcrumb-item>
-    <n-breadcrumb-item v-if="secondLevelOptions">
-      <n-dropdown :options="secondLevelOptions">
-        <div class="trigger">{{ secondPath }}</div>
-      </n-dropdown>
-    </n-breadcrumb-item> -->
   </n-breadcrumb>
 </template>

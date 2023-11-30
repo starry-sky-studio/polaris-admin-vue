@@ -20,12 +20,25 @@ import SystemToolsIcon from '~icons/mdi/tools'
 import CodeTemplatesIcon from '~icons/solar/code-bold'
 import BuiltinComponentsIcon from '~icons/mdi/puzzle'
 import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
+import MultiMenusIcon from '~icons/ic/baseline-format-list-bulleted'
 
-export const menuOptions: MenuOption[] = [
+export const myMenuOptions: MenuOption[] = [
   {
     label: '首页',
     key: 'home',
     icon: renderIcon(HomeIcon)
+  },
+  {
+    label: '首页',
+    key: 'home',
+    icon: renderIcon(HomeIcon),
+    children: [
+      {
+        label: '用户管理',
+        key: 'user-management',
+        icon: renderIcon(UserManagementIcon)
+      }
+    ]
   },
 
   {
@@ -120,48 +133,103 @@ export const menuOptions: MenuOption[] = [
   },
 
   {
-    label: '系统工具222',
-    key: 'system-tools222',
-    icon: renderIcon(SystemToolsIcon),
-    children: [
-      {
-        label: 'websocket',
-        key: 'websocket',
-        icon: renderIcon(WebSocketIcon)
-      },
-      {
-        label: 'excel',
-        key: 'excel',
-        icon: renderIcon(ExcelIcon)
-      }
-    ]
-  },
-
-  {
     label: '错误页面',
     key: 'error-pages',
     icon: renderIcon(ErrorPagesIcon),
     children: [
-      {
-        label: '看板111',
-        key: 'drag-kanban111',
-        icon: renderIcon(KanbanIcon)
-      },
-      {
-        label: 'iframe111',
-        key: 'iframe111',
-        icon: renderIcon(IframeIcon)
-      },
       {
         label: '500',
         key: '500',
         icon: renderIcon(InternalServerErrorIcon)
       },
       {
-        label: '40411111',
-        key: '40411111',
+        label: '404',
+        key: '404',
         icon: renderIcon(NotFoundIcon)
+      }
+    ]
+  },
+  {
+    label: '多级菜单',
+    key: 'multi-level-menus',
+    icon: renderIcon(MultiMenusIcon),
+    children: [
+      {
+        label: '2-1',
+        key: '2-1',
+        icon: renderIcon(MultiMenusIcon),
+        children: [
+          {
+            label: '2-1-1',
+            key: '2-1-1',
+            icon: renderIcon(MultiMenusIcon)
+          },
+          {
+            label: '2-1-2',
+            key: '2-1-2',
+            icon: renderIcon(MultiMenusIcon)
+          }
+        ]
+      },
+      {
+        label: '2-2',
+        key: '2-2',
+        icon: renderIcon(MultiMenusIcon),
+        children: [
+          {
+            label: '2-2-1',
+            key: '2-2-1',
+            icon: renderIcon(MultiMenusIcon)
+          }
+        ]
       }
     ]
   }
 ]
+
+//菜单数据缓存
+
+export const menuCacheMap = new Map<string, MenuOption | undefined>()
+
+/**
+ * 根据当前路由路径递归匹配菜单数据
+ */
+
+export function getMenuItem(key: string, menuTree: MenuOption[]): MenuOption | undefined {
+  if (menuCacheMap.has(key)) {
+    const cachedItem = menuCacheMap.get(key)
+    if (cachedItem === null) {
+      return undefined
+    }
+    return cachedItem
+  }
+
+  //匹配当前菜单数据
+  const menu = menuTree.find((m) => m?.key === key)
+
+  if (menu) {
+    menuCacheMap.set(key, menu)
+
+    return menu
+  }
+
+  //在孩子里面找
+
+  for (const item of menuTree) {
+    if (item.key === key) {
+      menuCacheMap.set(key, item)
+      return item
+    }
+    const { children } = item ?? {}
+    if (children) {
+      const menuItem = getMenuItem(key, children)
+      if (menuItem) {
+        menuCacheMap.set(key, menuItem)
+        return menuItem
+      }
+    }
+  }
+  //说明没有找到
+  //menuCacheMap.set(key, undefined)
+  return undefined
+}
