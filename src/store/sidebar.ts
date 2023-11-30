@@ -5,7 +5,6 @@ export const useSidebarStore = defineStore('sidebar', () => {
 
   const changeSidebar = (param: boolean) => {
     sidebarInverted.value = param
-    console.log(sidebarInverted.value, '22222')
   }
 
   return { sidebarInverted, toggleSidebar, changeSidebar }

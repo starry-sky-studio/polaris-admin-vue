@@ -1,0 +1,5 @@
+export const SYSTEM_FUNCTIONS_PREFIX = '/system-functions'
+export const UNIVERSAL_COMPONENTS_PREFIX = '/universal-components'
+export const ERROR_PAGES_PREFIX = '/error-pages'
+export const CODE_TEMPLATES_PREFIX = '/code-templates'
+export const SYSTEM_TOOLS_PREFIX = '/system-tools'
