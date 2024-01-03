@@ -5,7 +5,6 @@ export class ThemeUtils {
 
   //设置主题
   static setTheme = (theme: ThemeModel) => localStorage.setItem(ThemeUtils.THEME, theme)
-
   //清空主题
   static clearTheme = () => localStorage.removeItem(ThemeUtils.THEME)
 
