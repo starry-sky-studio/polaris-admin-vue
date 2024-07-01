@@ -1,93 +1,44 @@
+<template>
+  <div
+    ref="chart"
+    style="width: 100%; height: 400px"
+  ></div>
+</template>
+
 <script setup lang="ts">
-import { useThemeStore, useLangStore } from '@/store'
-import { ThemeModel, Lang } from '@/types'
-const themeStore = useThemeStore()
-const langStore = useLangStore()
-const toggleTheme = (theme: ThemeModel) => {
-  themeStore.changeTheme(theme)
-}
+import { ref, onMounted } from 'vue'
+import * as echarts from 'echarts/core'
+import { BarChart } from 'echarts/charts'
+import { TitleComponent, TooltipComponent, GridComponent } from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
 
-import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n()
+// 注册必须的组件
+echarts.use([TitleComponent, TooltipComponent, GridComponent, BarChart, CanvasRenderer])
 
-const formValue = ref({
-  user: {
-    name: '',
-    age: ''
-  },
-  phone: ''
+const chart = ref(null)
+
+onMounted(() => {
+  const myChart = echarts.init(chart.value)
+  const options = {
+    title: {
+      text: '柱状图示例'
+    },
+    tooltip: {},
+    xAxis: {
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+    },
+    yAxis: {},
+    series: [
+      {
+        type: 'bar',
+        data: [120, 200, 150, 80, 70, 110, 130]
+      }
+    ]
+  }
+  myChart.setOption(options)
 })
-
-const handleLang = (lang: Lang) => {
-  locale.value = lang
-  langStore.changeLang(lang)
-}
-
-const timestamp = ref(1183135260000)
 </script>
 
-<template>
-  <div>
-    我是home
+<style scoped>
 
-    <div>{{ t('401') }}</div>
-
-    <n-form
-      inline
-      :label-width="80"
-      :model="formValue"
-    >
-      <n-form-item
-        label="姓名"
-        path="user.name"
-      >
-        <n-input
-          v-model:value="formValue.user.name"
-          placeholder="输入姓名"
-        />
-      </n-form-item>
-      <n-form-item
-        label="年龄"
-        path="user.age"
-      >
-        <n-input
-          v-model:value="formValue.user.age"
-          placeholder="输入年龄"
-        />
-      </n-form-item>
-      <n-form-item
-        label="电话号码"
-        path="phone"
-      >
-        <n-input
-          v-model:value="formValue.phone"
-          placeholder="电话号码"
-        />
-      </n-form-item>
-    </n-form>
-
-    <n-button @click="toggleTheme(ThemeModel.DARK)">切换主题暗黑模式</n-button>
-    <n-button @click="toggleTheme(ThemeModel.LIGHT)">切换主题白天模式</n-button>
-    <n-button
-      type="tertiary"
-      @click="handleLang(Lang['zh-CN'])"
-    >
-      zh-CN
-    </n-button>
-    <n-button
-      type="primary"
-      @click="handleLang(Lang['en-US'])"
-    >
-      en-US
-    </n-button>
-    <n-button type="info"> Info </n-button>
-    <n-button type="success"> Success </n-button>
-    <n-button type="warning"> Warning </n-button>
-    <n-button type="error"> Error </n-button>
-    <n-card> 我是cards </n-card>
-    <n-date-picker
-      v-model:value="timestamp"
-      type="date"
-    />
-  </div>
-</template>
+</style>

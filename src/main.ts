@@ -8,6 +8,8 @@ import router from '@/router'
 import i18n from '@/i18n'
 import 'vue-global-api'
 
+
+
 const app = createApp(App)
 const pinia = createPinia()
 
