@@ -1,93 +1,23 @@
-<script setup lang="ts">
-import { useThemeStore, useLangStore } from '@/store'
-import { ThemeModel, Lang } from '@/types'
-const themeStore = useThemeStore()
-const langStore = useLangStore()
-const toggleTheme = (theme: ThemeModel) => {
-  themeStore.changeTheme(theme)
-}
+<template>
+  <div class="flex justify-between">
+    <Bar />
+    <LineChart />
+    <pie />
+  </div>
+  <Earth />
+</template>
 
-import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n()
-
-const formValue = ref({
-  user: {
-    name: '',
-    age: ''
-  },
-  phone: ''
-})
-
-const handleLang = (lang: Lang) => {
-  locale.value = lang
-  langStore.changeLang(lang)
-}
-
-const timestamp = ref(1183135260000)
+<script setup lang="ts" name="Father">
+import Pie from '@/pages/Home/cpns/pie.vue'
+import Bar from '@/pages/Home/cpns/bar.vue'
+import LineChart from '@/pages/Home/cpns/linechart.vue'
+import Earth from '@/pages/Home/cpns/earth.vue'
 </script>
 
-<template>
-  <div>
-    我是home
-
-    <div>{{ t('401') }}</div>
-
-    <n-form
-      inline
-      :label-width="80"
-      :model="formValue"
-    >
-      <n-form-item
-        label="姓名"
-        path="user.name"
-      >
-        <n-input
-          v-model:value="formValue.user.name"
-          placeholder="输入姓名"
-        />
-      </n-form-item>
-      <n-form-item
-        label="年龄"
-        path="user.age"
-      >
-        <n-input
-          v-model:value="formValue.user.age"
-          placeholder="输入年龄"
-        />
-      </n-form-item>
-      <n-form-item
-        label="电话号码"
-        path="phone"
-      >
-        <n-input
-          v-model:value="formValue.phone"
-          placeholder="电话号码"
-        />
-      </n-form-item>
-    </n-form>
-
-    <n-button @click="toggleTheme(ThemeModel.DARK)">切换主题暗黑模式</n-button>
-    <n-button @click="toggleTheme(ThemeModel.LIGHT)">切换主题白天模式</n-button>
-    <n-button
-      type="tertiary"
-      @click="handleLang(Lang['zh-CN'])"
-    >
-      zh-CN
-    </n-button>
-    <n-button
-      type="primary"
-      @click="handleLang(Lang['en-US'])"
-    >
-      en-US
-    </n-button>
-    <n-button type="info"> Info </n-button>
-    <n-button type="success"> Success </n-button>
-    <n-button type="warning"> Warning </n-button>
-    <n-button type="error"> Error </n-button>
-    <n-card> 我是cards </n-card>
-    <n-date-picker
-      v-model:value="timestamp"
-      type="date"
-    />
-  </div>
-</template>
+<style scoped>
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+</style>
