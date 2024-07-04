@@ -1,14 +1,13 @@
 <template>
   <div
-    style="max-width: 480px"
-    class="card"
+     class="w-[400px] h-[300px]"
     ref="chart"
   ></div>
 </template>
 <script setup lang="ts" name="Child">
-import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts/lib/chart/pie'
+
 const chart = ref(null)
 onMounted(() => {
   const myChart = echarts.init(chart.value)
@@ -32,12 +31,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.card {
-  width: 480px;
-  height: 300px;
-  /* background-color: #fff; */
-  /* border: 1px solid; */
-  /* border-color: rgba(0, 0, 0, 0.1); */
-  /* box-shadow: 5px 5px 5px #ccc; */
-}
+
 </style>

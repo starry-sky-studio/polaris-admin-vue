@@ -20,8 +20,6 @@
     "dayjs": "^1.11.10",
     "echarts": "^5.5.1",
     "echarts-gl": "^2.0.9",
-    "element-plus": "^2.7.6",
-    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "scss": "^0.2.4",
