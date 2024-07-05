@@ -6,12 +6,10 @@
 export {}
 declare global {
   const AppMetadata: typeof import('@/constants')['AppMetadata']
-  const AuthUtils: typeof import('../utils/auth')['AuthUtils']
-  const BasePageModel: typeof import('@/constants')['BasePageModel']
-  const BrowserUtils: typeof import('../utils/browser')['BrowserUtils']
+  const AuthUtils: typeof import('../src/utils/auth')['AuthUtils']
+  const BrowserUtils: typeof import('../src/utils/browser')['BrowserUtils']
   const EffectScope: typeof import('vue')['EffectScope']
-  const GlobalEnvConfig: typeof import('@/constants')['GlobalEnvConfig']
-  const LangUtils: typeof import('../utils/lang')['LangUtils']
+  const LangUtils: typeof import('../src/utils/lang')['LangUtils']
   const NAvatar: typeof import('naive-ui')['NAvatar']
   const NButton: typeof import('naive-ui')['NButton']
   const NEllipsis: typeof import('naive-ui')['NEllipsis']
@@ -20,9 +18,9 @@ declare global {
   const NInput: typeof import('naive-ui')['NInput']
   const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
   const NTag: typeof import('naive-ui')['NTag']
-  const SiteUtils: typeof import('../utils/site')['SiteUtils']
-  const ThemeUtils: typeof import('../utils/theme')['ThemeUtils']
-  const UploadAPI: typeof import('../api/files')['UploadAPI']
+  const SiteUtils: typeof import('../src/utils/site')['SiteUtils']
+  const ThemeUtils: typeof import('../src/utils/theme')['ThemeUtils']
+  const UploadAPI: typeof import('../src/api/files')['UploadAPI']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const axios: typeof import('axios')['default']
   const computed: typeof import('vue')['computed']
@@ -38,13 +36,12 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
-  const httpRequest: typeof import('../api/axios')['httpRequest']
+  const httpRequest: typeof import('../src/api/axios')['httpRequest']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
-  const k: typeof import('from')['k']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
   const mapState: typeof import('pinia')['mapState']
@@ -52,7 +49,6 @@ declare global {
   const mapWritableState: typeof import('pinia')['mapWritableState']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
-  const o: typeof import('from')['o']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
   const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
@@ -72,9 +68,8 @@ declare global {
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
-  const renderIcon: typeof import('../utils/render')['renderIcon']
+  const renderIcon: typeof import('../src/utils/render')['renderIcon']
   const resolveComponent: typeof import('vue')['resolveComponent']
-  const s: typeof import('from')['s']
   const setActivePinia: typeof import('pinia')['setActivePinia']
   const setMapStoreSuffix: typeof import('pinia')['setMapStoreSuffix']
   const shallowReactive: typeof import('vue')['shallowReactive']
@@ -87,30 +82,25 @@ declare global {
   const toValue: typeof import('vue')['toValue']
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
-  const use2XL: typeof import('../hooks/useMediaQuery')['use2XL']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useCounterStore: typeof import('../store/count')['useCounterStore']
+  const useCounterStore: typeof import('../src/store/count')['useCounterStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDialog: typeof import('naive-ui')['useDialog']
-  const useLG: typeof import('../hooks/useMediaQuery')['useLG']
-  const useLangStore: typeof import('../store/lang')['useLangStore']
+  const useI18n: typeof import('vue-i18n')['useI18n']
+  const useLangStore: typeof import('../src/store/lang')['useLangStore']
   const useLink: typeof import('vue-router')['useLink']
-  const useLoading: typeof import('../hooks/useLoading')['useLoading']
+  const useLoading: typeof import('../src/hooks/useLoading')['useLoading']
   const useLoadingBar: typeof import('naive-ui')['useLoadingBar']
-  const useMD: typeof import('../hooks/useMediaQuery')['useMD']
   const useMessage: typeof import('naive-ui')['useMessage']
-  const useMobile: typeof import('../hooks/useMediaQuery')['useMobile']
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMyFetch: typeof import('@vueuse/core')['useFetch']
   const useNotification: typeof import('naive-ui')['useNotification']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
-  const useSM: typeof import('../hooks/useMediaQuery')['useSM']
-  const useSidebarStore: typeof import('../store/sidebar')['useSidebarStore']
+  const useSidebarStore: typeof import('../src/store/sidebar')['useSidebarStore']
   const useSlots: typeof import('vue')['useSlots']
-  const useThemeStore: typeof import('../store/theme')['useThemeStore']
-  const useXL: typeof import('../hooks/useMediaQuery')['useXL']
+  const useThemeStore: typeof import('../src/store/theme')['useThemeStore']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -130,10 +120,10 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly AppMetadata: UnwrapRef<typeof import('@/constants')['AppMetadata']>
-    readonly AuthUtils: UnwrapRef<typeof import('../utils/auth')['AuthUtils']>
-    readonly BrowserUtils: UnwrapRef<typeof import('../utils/browser')['BrowserUtils']>
+    readonly AuthUtils: UnwrapRef<typeof import('../src/utils/auth')['AuthUtils']>
+    readonly BrowserUtils: UnwrapRef<typeof import('../src/utils/browser')['BrowserUtils']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly LangUtils: UnwrapRef<typeof import('../utils/lang')['LangUtils']>
+    readonly LangUtils: UnwrapRef<typeof import('../src/utils/lang')['LangUtils']>
     readonly NAvatar: UnwrapRef<typeof import('naive-ui')['NAvatar']>
     readonly NButton: UnwrapRef<typeof import('naive-ui')['NButton']>
     readonly NEllipsis: UnwrapRef<typeof import('naive-ui')['NEllipsis']>
@@ -142,9 +132,9 @@ declare module 'vue' {
     readonly NInput: UnwrapRef<typeof import('naive-ui')['NInput']>
     readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
     readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
-    readonly SiteUtils: UnwrapRef<typeof import('../utils/site')['SiteUtils']>
-    readonly ThemeUtils: UnwrapRef<typeof import('../utils/theme')['ThemeUtils']>
-    readonly UploadAPI: UnwrapRef<typeof import('../api/files')['UploadAPI']>
+    readonly SiteUtils: UnwrapRef<typeof import('../src/utils/site')['SiteUtils']>
+    readonly ThemeUtils: UnwrapRef<typeof import('../src/utils/theme')['ThemeUtils']>
+    readonly UploadAPI: UnwrapRef<typeof import('../src/api/files')['UploadAPI']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -160,7 +150,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly httpRequest: UnwrapRef<typeof import('../api/axios')['httpRequest']>
+    readonly httpRequest: UnwrapRef<typeof import('../src/api/axios')['httpRequest']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
@@ -192,7 +182,7 @@ declare module 'vue' {
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
-    readonly renderIcon: UnwrapRef<typeof import('../utils/render')['renderIcon']>
+    readonly renderIcon: UnwrapRef<typeof import('../src/utils/render')['renderIcon']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
@@ -207,13 +197,13 @@ declare module 'vue' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCounterStore: UnwrapRef<typeof import('../store/count')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
-    readonly useLangStore: UnwrapRef<typeof import('../store/lang')['useLangStore']>
+    readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
+    readonly useLangStore: UnwrapRef<typeof import('../src/store/lang')['useLangStore']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
-    readonly useLoading: UnwrapRef<typeof import('../hooks/useLoading')['useLoading']>
+    readonly useLoading: UnwrapRef<typeof import('../src/hooks/useLoading')['useLoading']>
     readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
     readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
@@ -221,9 +211,9 @@ declare module 'vue' {
     readonly useNotification: UnwrapRef<typeof import('naive-ui')['useNotification']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useSidebarStore: UnwrapRef<typeof import('../store/sidebar')['useSidebarStore']>
+    readonly useSidebarStore: UnwrapRef<typeof import('../src/store/sidebar')['useSidebarStore']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
-    readonly useThemeStore: UnwrapRef<typeof import('../store/theme')['useThemeStore']>
+    readonly useThemeStore: UnwrapRef<typeof import('../src/store/theme')['useThemeStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
@@ -233,10 +223,10 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly AppMetadata: UnwrapRef<typeof import('@/constants')['AppMetadata']>
-    readonly AuthUtils: UnwrapRef<typeof import('../utils/auth')['AuthUtils']>
-    readonly BrowserUtils: UnwrapRef<typeof import('../utils/browser')['BrowserUtils']>
+    readonly AuthUtils: UnwrapRef<typeof import('../src/utils/auth')['AuthUtils']>
+    readonly BrowserUtils: UnwrapRef<typeof import('../src/utils/browser')['BrowserUtils']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly LangUtils: UnwrapRef<typeof import('../utils/lang')['LangUtils']>
+    readonly LangUtils: UnwrapRef<typeof import('../src/utils/lang')['LangUtils']>
     readonly NAvatar: UnwrapRef<typeof import('naive-ui')['NAvatar']>
     readonly NButton: UnwrapRef<typeof import('naive-ui')['NButton']>
     readonly NEllipsis: UnwrapRef<typeof import('naive-ui')['NEllipsis']>
@@ -245,9 +235,9 @@ declare module '@vue/runtime-core' {
     readonly NInput: UnwrapRef<typeof import('naive-ui')['NInput']>
     readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
     readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
-    readonly SiteUtils: UnwrapRef<typeof import('../utils/site')['SiteUtils']>
-    readonly ThemeUtils: UnwrapRef<typeof import('../utils/theme')['ThemeUtils']>
-    readonly UploadAPI: UnwrapRef<typeof import('../api/files')['UploadAPI']>
+    readonly SiteUtils: UnwrapRef<typeof import('../src/utils/site')['SiteUtils']>
+    readonly ThemeUtils: UnwrapRef<typeof import('../src/utils/theme')['ThemeUtils']>
+    readonly UploadAPI: UnwrapRef<typeof import('../src/api/files')['UploadAPI']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -263,7 +253,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly httpRequest: UnwrapRef<typeof import('../api/axios')['httpRequest']>
+    readonly httpRequest: UnwrapRef<typeof import('../src/api/axios')['httpRequest']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
@@ -295,7 +285,7 @@ declare module '@vue/runtime-core' {
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
-    readonly renderIcon: UnwrapRef<typeof import('../utils/render')['renderIcon']>
+    readonly renderIcon: UnwrapRef<typeof import('../src/utils/render')['renderIcon']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
@@ -310,13 +300,13 @@ declare module '@vue/runtime-core' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCounterStore: UnwrapRef<typeof import('../store/count')['useCounterStore']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
-    readonly useLangStore: UnwrapRef<typeof import('../store/lang')['useLangStore']>
+    readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
+    readonly useLangStore: UnwrapRef<typeof import('../src/store/lang')['useLangStore']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
-    readonly useLoading: UnwrapRef<typeof import('../hooks/useLoading')['useLoading']>
+    readonly useLoading: UnwrapRef<typeof import('../src/hooks/useLoading')['useLoading']>
     readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
     readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
@@ -324,9 +314,9 @@ declare module '@vue/runtime-core' {
     readonly useNotification: UnwrapRef<typeof import('naive-ui')['useNotification']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useSidebarStore: UnwrapRef<typeof import('../store/sidebar')['useSidebarStore']>
+    readonly useSidebarStore: UnwrapRef<typeof import('../src/store/sidebar')['useSidebarStore']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
-    readonly useThemeStore: UnwrapRef<typeof import('../store/theme')['useThemeStore']>
+    readonly useThemeStore: UnwrapRef<typeof import('../src/store/theme')['useThemeStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

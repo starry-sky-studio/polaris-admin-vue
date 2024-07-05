@@ -51,5 +51,7 @@
   "TotalPage": "Total { totalPage }",
   "Type": "Type",
   "Upload": "Upload",
-  "Verify": "Verify"
+  "Verify": "Verify",
+  "Lang": "Language",
+  "Theme": "Theme"
 }

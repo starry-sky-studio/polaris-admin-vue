@@ -51,5 +51,7 @@
   "TotalPage": "共计 { totalPage }",
   "Type": "类型",
   "Upload": "上传",
-  "Verify": "验证"
+  "Verify": "验证",
+  "Lang": "语言",
+  "Theme": "主题"
 }

@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
         eslintrc: {
           enabled: true // <-- this
         },
-        dts: 'src/types/auto-imports.d.ts', // or a custom path
+        dts: '@types/auto-imports.d.ts', // or a custom path
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
           /\.vue$/,
@@ -40,11 +40,15 @@ export default defineConfig(({ mode }) => {
           'pinia',
           // custom
           {
+            'vue-router': ['useRouter', 'useRoute']
+          },
+          {
             '@vueuse/core': [
               'useMouse', // import { useMouse } from '@vueuse/core',
               // alias
               ['useFetch', 'useMyFetch'] // import { useFetch as useMyFetch } from '@vueuse/core',
             ],
+            'vue-i18n': ['useI18n'],
             axios: [
               ['default', 'axios'] // import { default as axios } from 'axios',
             ],

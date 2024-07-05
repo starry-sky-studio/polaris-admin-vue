@@ -13,21 +13,15 @@ import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
-import BaseBreadcrumb from './BaseBreadcrumb.vue'
-
 import { useFullscreen } from '@vueuse/core'
+
 const { isFullscreen, toggle } = useFullscreen()
-
-import { useRouter } from 'vue-router'
-
-import { AuthUtils } from '@/utils'
-
-import { useSidebarStore, useThemeStore } from '@/store'
-import { useMessage } from 'naive-ui'
 const sidebarStore = useSidebarStore()
 const themeStore = useThemeStore()
+const langStore = useLangStore()
 const message = useMessage()
 const router = useRouter()
+const { t, locale } = useI18n()
 
 enum UserAction {
   'USER.INFO',
@@ -71,6 +65,10 @@ const selectUserOption = (key: UserAction) => {
     default:
       break
   }
+}
+
+const handleLang = () => {
+  locale.value = locale.value === 'zh-CN' ? 'en-US' : 'zh-CN'
 }
 </script>
 
@@ -139,7 +137,22 @@ const selectUserOption = (key: UserAction) => {
                   @click="() => themeStore.toggleTheme()"
                 />
               </template>
-              主题
+              {{ t('Theme') }}
+            </NTooltip>
+
+            <NTooltip
+              placement="bottom"
+              trigger="hover"
+            >
+              <template #trigger>
+                <NIcon
+                  class="cursor-pointer"
+                  size="20"
+                  :component="LanguageIcon"
+                  @click="handleLang"
+                />
+              </template>
+              {{ t('Lang') }}
             </NTooltip>
 
             <NDropdown

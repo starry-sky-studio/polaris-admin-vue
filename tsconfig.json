@@ -31,7 +31,7 @@
     "src/**/*.vue",
     "src/**/*.json",
     "@types/**/*.d.ts"
-, "src/mock/data.js", "src/utils/requestMock.js", "src/mock/index.js"  ],
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
