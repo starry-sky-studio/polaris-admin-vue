@@ -6,19 +6,23 @@
 </template>
 <script setup lang="ts" name="Child">
 import * as echarts from 'echarts'
+import 'echarts/lib/chart/pie'
 
 const chart = ref(null)
 onMounted(() => {
   const myChart = echarts.init(chart.value)
   const options = {
     xAxis: {
+      type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
-    yAxis: {},
+    yAxis: {
+      type: 'value'
+    },
     series: [
       {
-        type: 'bar',
-        data: [23, 24, 18, 25, 27, 28, 25]
+        data: [150, 230, 224, 218, 135, 147, 260],
+        type: 'line'
       }
     ]
   }
@@ -26,6 +30,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

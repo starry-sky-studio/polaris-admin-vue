@@ -190,7 +190,7 @@ export const routes = [
       {
         path: `${MULTI_LEVEL_MENUS}/2-1/2-1-2`,
         name: '2-1-2',
-        component: () => import('@/pages/MultiLevelMenus/2-1/2-1-2/index.vue'),
+        component: () => import('@/pages/MultiLevelMenus/2-1/2-1-1/index.vue'),
         meta: {
           title: '2-1-2',
           icon: MultiMenusIcon

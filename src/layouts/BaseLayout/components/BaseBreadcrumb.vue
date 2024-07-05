@@ -147,7 +147,7 @@ watch(
       :key="index"
     >
       <n-dropdown :options="item.options1">
-        <div class="trigger">1111</div>
+        <div class="trigger">面包屑</div>
       </n-dropdown>
     </n-breadcrumb-item>
   </n-breadcrumb>

@@ -1,7 +1,4 @@
-<script setup lang="ts">
-let message: string = 'Hello, World!'
-console.log(message)
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="bg-slate-400 h-screen flex justify-between">

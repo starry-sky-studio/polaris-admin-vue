@@ -28,18 +28,6 @@ export const myMenuOptions: MenuOption[] = [
     key: 'home',
     icon: renderIcon(HomeIcon)
   },
-  {
-    label: '首页',
-    key: 'home',
-    icon: renderIcon(HomeIcon),
-    children: [
-      {
-        label: '用户管理',
-        key: 'user-management',
-        icon: renderIcon(UserManagementIcon)
-      }
-    ]
-  },
 
   {
     label: '系统功能',

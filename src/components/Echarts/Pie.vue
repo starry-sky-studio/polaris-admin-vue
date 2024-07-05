@@ -8,7 +8,6 @@
 import * as echarts from 'echarts/core'
 import 'echarts/lib/chart/pie'
 
-
 const chart = ref(null)
 
 onMounted(() => {
@@ -60,6 +59,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

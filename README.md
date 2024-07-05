@@ -1,19 +1,66 @@
-# Vue 3 + TypeScript + Vite
+## Polaris-admin-vue3
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+an open source, backend management template based on Vue 3 + Vite + Naive UI + TypeScript + TailwindCSS.
 
-## Recommended IDE Setup
+## Features
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [x] Login
+- [x] Dashboard
+- [x] User Management
+- [x] Role Management
+- [x] Permission Management
+- [x] Menu Management
+- [x] Log Management
+- [x] Error Page
+- [x] Icon Library
+- [x] Form
+- [x] Table
+- [x] Tree
+- [x] Chart
+- [x] Map
+- [x] Editor
+- [x] Upload
+- [x] Download
+- [x] Print
+- [x] QR Code
+- [x] iconify/json and unplugin-icons
+- [x] unplugin-auto-import and unplugin-vue-components
+- [x] ESLint Prettier CSpell
+- [x] Vue Use Motion for animation
 
-## Type Support For `.vue` Imports in TS
+## Tech Stack
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Vue 3
+- Vite
+- Naive UI
+- TypeScript
+- TailwindCSS
+- Sass
+- Vue Use
+- Vue Router
+- Pinia
+- Axios
+- ECharts
+- Socket.IO
+- third-party login
+- Tauri
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Getting Started
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-### 测试
+```bash
+# clone the project
+git clone https://github.com/starry-sky-studio/polaris-admin-vue.git
+
+# enter the project directory
+cd polaris-admin-vue
+
+# install dependency
+pnpm install
+
+# develop
+pnpm run dev
+```
+
+## License
+
+This project is [MIT](LICENSE) licensed.

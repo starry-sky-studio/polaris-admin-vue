@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { AppMetadata } from '@/constants'
-const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
+const { APP_NAME, VERSION, TEAM_NAME, REPO_GITHUB_URL } = AppMetadata
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
         alt=""
         loading="eager"
         width="26"
-        @click="BrowserUtils.openNewWindow(TEAM_GITHUB_URL)"
+        @click="BrowserUtils.openNewWindow(REPO_GITHUB_URL)"
       />
       <span>{{ TEAM_NAME }}</span>
     </div>
