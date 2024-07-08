@@ -9,9 +9,13 @@ const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const [loading, dispatcher] = useLoading()
 
+const state = ref(false)
+const pwState = ref('password')
+const eyeState = ref(false)
+
 const formData = reactive({
-  username: 'admin',
-  password: '123456'
+  username: '',
+  password: ''
 })
 
 const rules: FormRules = {
@@ -35,6 +39,22 @@ const rules: FormRules = {
     }
   ]
 }
+onMounted(() => {
+  if (localStorage.getItem('username') && localStorage.getItem('password')) {
+    formData.username = localStorage.getItem('username') as string
+    formData.password = localStorage.getItem('password') as string
+    state.value = true
+  }
+})
+
+const updateType = () => {
+  eyeState.value = !eyeState.value
+  if (eyeState.value) {
+    pwState.value = 'text'
+  } else {
+    pwState.value = 'password'
+  }
+}
 
 const handleLogin = async () => {
   try {
@@ -50,6 +70,10 @@ const handleLogin = async () => {
   loading.value = true
 
   const sendRequest = () => {
+    if (state.value === true) {
+      localStorage.setItem('username', formData.username)
+      localStorage.setItem('password', formData.password)
+    }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return new Promise((resolve, _reject) => {
       setTimeout(() => {
@@ -88,11 +112,29 @@ const handleLogin = async () => {
           placeholder="输入用户名"
         />
       </n-form-item>
-      <n-form-item path="password">
+      <n-form-item
+        path="password"
+        class="relative"
+      >
         <n-input
+          :type="pwState"
           v-model:value="formData.password"
           placeholder="请输入密码"
         />
+
+        <img
+          class="w-[20px] h-[40-px] absolute top-1.5 right-1"
+          src="@/assets/img/eye.png"
+          @click="updateType"
+          alt=""
+        />
+      </n-form-item>
+      <n-form-item>
+        <n-checkbox
+          type="checkbox"
+          v-model:checked="state"
+          >记住密码</n-checkbox
+        >
       </n-form-item>
 
       <n-form-item>
