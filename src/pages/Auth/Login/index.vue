@@ -12,6 +12,13 @@ const [loading, dispatcher] = useLoading()
 const state = ref(false)
 const pwState = ref('password')
 const eyeState = ref(false)
+const imgUrl1 = ref(
+  'https://img2.baidu.com/it/u=2986947564,869533318&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+)
+const imgUrl2 = ref('https://pic.616pic.com/ys_img/00/33/92/Nk3hTdYoJE.jpg')
+let showImgUrl = ref(
+  'https://img2.baidu.com/it/u=2986947564,869533318&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+)
 
 const formData = reactive({
   username: '',
@@ -48,11 +55,14 @@ onMounted(() => {
 })
 
 const updateType = () => {
+  // showImgUrl = showImgUrl === imgUrl1 ? imgUrl2 : imgUrl1
   eyeState.value = !eyeState.value
   if (eyeState.value) {
     pwState.value = 'text'
+    showImgUrl = imgUrl2
   } else {
     pwState.value = 'password'
+    showImgUrl = imgUrl1
   }
 }
 
@@ -124,7 +134,7 @@ const handleLogin = async () => {
 
         <img
           class="w-[20px] h-[40-px] absolute top-1.5 right-1"
-          src="@/assets/img/eye.png"
+          :src="showImgUrl"
           @click="updateType"
           alt=""
         />
