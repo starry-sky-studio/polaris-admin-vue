@@ -4,16 +4,11 @@ import { FormInst, FormItemRule, FormRules, useMessage, FormValidationError } fr
 import { ref, reactive } from 'vue'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
-import IcOutlineRemoveRedEye from '~icons/ic/outline-remove-red-eye'
-import EntypoEyeWithLine from '~icons/entypo/eye-with-line'
 
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const [loading, dispatcher] = useLoading()
 const state = ref(false)
-const pwState = ref('password')
-const eyeState = ref(false)
-
 const formData = reactive({
   username: '',
   password: ''
@@ -41,29 +36,22 @@ const rules: FormRules = {
   ]
 }
 onMounted(() => {
-  if (localStorage.getItem('username') && localStorage.getItem('password')) {
-    formData.username = localStorage.getItem('username') as string
-    formData.password = localStorage.getItem('password') as string
+  const res = AuthUtils.getLoginInfo()
+  if (res) {
+    formData.username = res.username
+    formData.password = res.password
     state.value = true
   }
 })
 
-const updateType = () => {
-  eyeState.value = !eyeState.value
-  if (eyeState.value) {
-    pwState.value = 'text'
-  } else {
-    pwState.value = 'password'
-  }
-}
-
 const sendRequest = () => {
   if (state.value === true) {
-    localStorage.setItem('username', formData.username)
-    localStorage.setItem('password', formData.password)
+    AuthUtils.setLoginInfo({
+      username: formData.username,
+      password: formData.password
+    })
   } else {
-    localStorage.setItem('username', '')
-    localStorage.setItem('password', '')
+    AuthUtils.clearloginInfo()
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, _reject) => {
@@ -91,7 +79,7 @@ const handleLogin = async () => {
 
   try {
     await sendRequest()
-    router.push('/')
+    router.replace('/')
   } catch (error) {
     console.error('Error sending request:', error)
   } finally {
@@ -103,7 +91,6 @@ const handleLogin = async () => {
 <template>
   <div class="flex flex-col justify-start items-center w-full h-full">
     <div class="text-2xl pb-4 text-[#333] dark:text-[#fff]">登录</div>
-
     <n-form
       ref="formRef"
       :model="formData"
@@ -121,20 +108,11 @@ const handleLogin = async () => {
         class="relative"
       >
         <n-input
-          :type="pwState as 'text' | 'password'"
           v-model:value="formData.password"
           placeholder="请输入密码"
+          type="password"
+          show-password-on="click"
         />
-        <IcOutlineRemoveRedEye
-          v-if="eyeState === false"
-          class="w-[20px] h-[40-px] absolute top-1.5 right-1"
-          @click="updateType"
-        ></IcOutlineRemoveRedEye>
-        <EntypoEyeWithLine
-          v-else
-          class="w-[20px] h-[40-px] absolute top-1.5 right-1"
-          @click="updateType"
-        ></EntypoEyeWithLine>
       </n-form-item>
       <n-form-item>
         <n-checkbox

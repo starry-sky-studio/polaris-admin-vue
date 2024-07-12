@@ -83,7 +83,6 @@ declare global {
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useCounterStore: typeof import('../src/store/count')['useCounterStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDialog: typeof import('naive-ui')['useDialog']
@@ -110,13 +109,10 @@ declare global {
 declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
-  import('vue')
   // @ts-ignore
   export type { DataTableBaseColumn, DataTableColumn, DataTableColumns, DataTableCreateSummary, DropdownOption, FormInst, FormItemInst, FormItemRule, FormRules, FormValidationError, MenuInst, MenuOption, UploadCustomRequestOptions, UploadFileInfo, UploadInst } from 'naive-ui'
-  import('naive-ui')
   // @ts-ignore
   export type { RouteLocationRaw } from 'vue-router'
-  import('vue-router')
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
