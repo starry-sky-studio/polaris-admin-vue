@@ -17,7 +17,6 @@ declare module 'vue' {
     BaseSidebar: typeof import('./../src/layouts/BaseLayout/components/BaseSidebar.vue')['default']
     BaseTabs: typeof import('./../src/layouts/BaseLayout/components/BaseTabs.vue')['default']
     Earth: typeof import('./../src/components/Echarts/Earth.vue')['default']
-    Linechart: typeof import('./../src/components/Echarts/Linechart.vue')['default']
     LineChart: typeof import('./../src/components/Echarts/LineChart.vue')['default']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']

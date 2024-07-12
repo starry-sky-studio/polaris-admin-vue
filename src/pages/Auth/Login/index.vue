@@ -4,21 +4,15 @@ import { FormInst, FormItemRule, FormRules, useMessage, FormValidationError } fr
 import { ref, reactive } from 'vue'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
+import IcOutlineRemoveRedEye from '~icons/ic/outline-remove-red-eye'
+import EntypoEyeWithLine from '~icons/entypo/eye-with-line'
 
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const [loading, dispatcher] = useLoading()
-
 const state = ref(false)
 const pwState = ref('password')
 const eyeState = ref(false)
-const imgUrl1 = ref(
-  'https://img2.baidu.com/it/u=2986947564,869533318&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-)
-const imgUrl2 = ref('https://pic.616pic.com/ys_img/00/33/92/Nk3hTdYoJE.jpg')
-let showImgUrl = ref(
-  'https://img2.baidu.com/it/u=2986947564,869533318&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-)
 
 const formData = reactive({
   username: '',
@@ -55,15 +49,31 @@ onMounted(() => {
 })
 
 const updateType = () => {
-  // showImgUrl = showImgUrl === imgUrl1 ? imgUrl2 : imgUrl1
   eyeState.value = !eyeState.value
   if (eyeState.value) {
     pwState.value = 'text'
-    showImgUrl = imgUrl2
   } else {
     pwState.value = 'password'
-    showImgUrl = imgUrl1
   }
+}
+
+const sendRequest = () => {
+  if (state.value === true) {
+    localStorage.setItem('username', formData.username)
+    localStorage.setItem('password', formData.password)
+  } else {
+    localStorage.setItem('username', '')
+    localStorage.setItem('password', '')
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  return new Promise((resolve, _reject) => {
+    setTimeout(() => {
+      // 模拟请求成功
+      resolve('Request successful!')
+      // 模拟请求失败
+      // reject('Request failed!');
+    }, 1000)
+  })
 }
 
 const handleLogin = async () => {
@@ -78,22 +88,6 @@ const handleLogin = async () => {
   }
 
   loading.value = true
-
-  const sendRequest = () => {
-    if (state.value === true) {
-      localStorage.setItem('username', formData.username)
-      localStorage.setItem('password', formData.password)
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return new Promise((resolve, _reject) => {
-      setTimeout(() => {
-        // 模拟请求成功
-        resolve('Request successful!')
-        // 模拟请求失败
-        // reject('Request failed!');
-      }, 1000)
-    })
-  }
 
   try {
     await sendRequest()
@@ -127,17 +121,20 @@ const handleLogin = async () => {
         class="relative"
       >
         <n-input
-          :type="pwState"
+          :type="pwState as 'text' | 'password'"
           v-model:value="formData.password"
           placeholder="请输入密码"
         />
-
-        <img
+        <IcOutlineRemoveRedEye
+          v-if="eyeState === false"
           class="w-[20px] h-[40-px] absolute top-1.5 right-1"
-          :src="showImgUrl"
           @click="updateType"
-          alt=""
-        />
+        ></IcOutlineRemoveRedEye>
+        <EntypoEyeWithLine
+          v-else
+          class="w-[20px] h-[40-px] absolute top-1.5 right-1"
+          @click="updateType"
+        ></EntypoEyeWithLine>
       </n-form-item>
       <n-form-item>
         <n-checkbox
