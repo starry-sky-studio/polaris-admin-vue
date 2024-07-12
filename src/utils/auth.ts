@@ -5,6 +5,11 @@ export class AuthUtils {
   private static ACCESS_TOKEN_KEY = 'access_token'
 
   /**
+   * token 在本地存储的健名
+   */
+  private static LOGIN_INFO_KEY = 'login_info'
+
+  /**
    * 获取访问令牌
    * @description 获取 `localStorage` 中存储的访问令牌
    * @returns `localStorage` 中存储的访问令牌
@@ -68,5 +73,35 @@ export class AuthUtils {
    */
   static isAuthenticated(): boolean {
     return !!localStorage.getItem(this.ACCESS_TOKEN_KEY)
+  }
+
+  /**
+   * 存储记住密码登录信息
+   * @description  存储记住密码登录信息
+   * @returns
+   */
+  static setLoginInfo(data: LoginModel) {
+    localStorage.setItem(this.LOGIN_INFO_KEY, JSON.stringify(data))
+  }
+
+  /**
+   * 清空存储记住密码登录信息
+   * @description  存储记住密码登录信息
+   * @returns
+   */
+  static clearloginInfo() {
+    localStorage.removeItem(this.LOGIN_INFO_KEY)
+  }
+  /**
+   * 得到存储记住密码登录信息
+   * @description  存储记住密码登录信息
+   * @returns
+   */
+  static getLoginInfo(): LoginModel | null {
+    const loginInfoString = localStorage.getItem(this.LOGIN_INFO_KEY)
+    if (!loginInfoString) return null
+    const { username, password } = JSON.parse(loginInfoString)
+    if (!username || !password) return null
+    return { username, password }
   }
 }

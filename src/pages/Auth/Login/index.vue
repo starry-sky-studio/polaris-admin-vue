@@ -8,10 +8,10 @@ import GoogleIcon from '~icons/logos/google-icon'
 const formRef = ref<FormInst | null>(null)
 const message = useMessage()
 const [loading, dispatcher] = useLoading()
-
+const state = ref(false)
 const formData = reactive({
-  username: 'admin',
-  password: '123456'
+  username: '',
+  password: ''
 })
 
 const rules: FormRules = {
@@ -35,6 +35,34 @@ const rules: FormRules = {
     }
   ]
 }
+onMounted(() => {
+  const res = AuthUtils.getLoginInfo()
+  if (res) {
+    formData.username = res.username
+    formData.password = res.password
+    state.value = true
+  }
+})
+
+const sendRequest = () => {
+  if (state.value === true) {
+    AuthUtils.setLoginInfo({
+      username: formData.username,
+      password: formData.password
+    })
+  } else {
+    AuthUtils.clearloginInfo()
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  return new Promise((resolve, _reject) => {
+    setTimeout(() => {
+      // 模拟请求成功
+      resolve('Request successful!')
+      // 模拟请求失败
+      // reject('Request failed!');
+    }, 1000)
+  })
+}
 
 const handleLogin = async () => {
   try {
@@ -49,21 +77,9 @@ const handleLogin = async () => {
 
   loading.value = true
 
-  const sendRequest = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return new Promise((resolve, _reject) => {
-      setTimeout(() => {
-        // 模拟请求成功
-        resolve('Request successful!')
-        // 模拟请求失败
-        // reject('Request failed!');
-      }, 1000)
-    })
-  }
-
   try {
     await sendRequest()
-    router.push('/')
+    router.replace('/')
   } catch (error) {
     console.error('Error sending request:', error)
   } finally {
@@ -75,7 +91,6 @@ const handleLogin = async () => {
 <template>
   <div class="flex flex-col justify-start items-center w-full h-full">
     <div class="text-2xl pb-4 text-[#333] dark:text-[#fff]">登录</div>
-
     <n-form
       ref="formRef"
       :model="formData"
@@ -88,11 +103,23 @@ const handleLogin = async () => {
           placeholder="输入用户名"
         />
       </n-form-item>
-      <n-form-item path="password">
+      <n-form-item
+        path="password"
+        class="relative"
+      >
         <n-input
           v-model:value="formData.password"
           placeholder="请输入密码"
+          type="password"
+          show-password-on="click"
         />
+      </n-form-item>
+      <n-form-item>
+        <n-checkbox
+          type="checkbox"
+          v-model:checked="state"
+          >记住密码</n-checkbox
+        >
       </n-form-item>
 
       <n-form-item>
