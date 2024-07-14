@@ -25,7 +25,7 @@ import HomeIcon from '~icons/material-symbols/home'
 import MultiMenusIcon from '~icons/ic/baseline-format-list-bulleted'
 
 export const routes = [
-  {
+  { 
     path: '/',
     name: 'base-layout',
     component: () => import('@/layouts/BaseLayout/index.vue'),

@@ -2,7 +2,7 @@
 import BaseFooter from './components/BaseFooter.vue'
 import BaseContent from './components/BaseContent.vue'
 import BaseSidebar from './components/BaseSidebar.vue'
-import BaseHeader from './components/BaseHeader.vue'
+import BaseHeader from './components/baseHeader.vue'
 </script>
 
 <template>
