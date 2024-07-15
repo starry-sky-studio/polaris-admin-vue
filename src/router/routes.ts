@@ -51,7 +51,7 @@ export const routes = [
         }
       },
       {
-        path: '/:pathMatch(.*)*',
+        path: `${ERROR_PAGES_PREFIX}/404`,
         name: '404',
         component: () => import('@/pages/ErrorPages/404/index.vue'),
         meta: {
@@ -233,6 +233,10 @@ export const routes = [
           title: '2-2-1',
           icon: MultiMenusIcon
         }
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        redirect: `${ERROR_PAGES_PREFIX}/404`
       }
     ]
   },
