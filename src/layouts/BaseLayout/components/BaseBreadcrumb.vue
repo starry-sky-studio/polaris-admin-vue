@@ -1,45 +1,23 @@
 <script setup lang="ts">
 import { myMenuOptions, getMenuItem } from '@/constants'
+import { useRoute } from 'vue-router'
 
-import { MenuOption, DropdownOption } from 'naive-ui'
-import { useRoute, useRouter } from 'vue-router'
-const route = useRoute()
 const router = useRoute()
-let arr = ref<String[]>([])
-
-interface breadcrumbDataitem {
-  Option: MenuOption | undefined | MenuOption[]
-  value: string
-}
-
-const breadcrumbData = ref<breadcrumbDataitem[]>([
-  {
-    Option: myMenuOptions,
-    value: route.meta?.title as string
-  }
-])
-
-
-
+const breadcrumbData = ref<string[]>([])
 
 const handleMenus = (path: string) => {
   const pathSplit = path.split('/').filter((i) => i)
-  const items = ref<String[]>([])
+  breadcrumbData.value = []
   pathSplit.forEach((cur: string) => {
     const breadcrumbItem = getMenuItem(cur, myMenuOptions)
-    items.value.push(
-      breadcrumbItem?.label as string
-    )
-  }
-  )
-  return items.value
+    breadcrumbData.value.push(breadcrumbItem?.label as string)
+  })
 }
 
 watch(
   () => router.fullPath,
   () => {
-
-  arr.value = handleMenus(router.fullPath)
+    handleMenus(router.fullPath)
   },
   {
     immediate: true
@@ -49,6 +27,11 @@ watch(
 
 <template>
   <n-breadcrumb separator=">">
-    <n-breadcrumb-item v-for="item in arr"> {{ item }}</n-breadcrumb-item>
+    <n-breadcrumb-item
+      v-for="item in breadcrumbData"
+      :key="item"
+    >
+      {{ item }}</n-breadcrumb-item
+    >
   </n-breadcrumb>
 </template>
