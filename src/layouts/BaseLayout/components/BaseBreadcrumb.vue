@@ -5,19 +5,19 @@ import { useRoute } from 'vue-router'
 const router = useRoute()
 const breadcrumbData = ref<string[]>([])
 
-const handleMenus = (path: string) => {
+const handleBreadcrumbData = (path: string) => {
   const pathSplit = path.split('/').filter((i) => i)
   breadcrumbData.value = []
   pathSplit.forEach((cur: string) => {
     const breadcrumbItem = getMenuItem(cur, myMenuOptions)
-    breadcrumbData.value.push(breadcrumbItem?.label as string)
+    breadcrumbItem && breadcrumbData.value.push(breadcrumbItem?.label as string)
   })
 }
 
 watch(
   () => router.fullPath,
   () => {
-    handleMenus(router.fullPath)
+    handleBreadcrumbData(router.fullPath)
   },
   {
     immediate: true
