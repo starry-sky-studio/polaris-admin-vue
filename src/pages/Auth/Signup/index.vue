@@ -84,7 +84,7 @@ const handleSignup = async () => {
 
 <template>
   <div class="flex flex-col justify-start items-center w-full h-full">
-    <div class="text-2xl pb-4 text-[#333] dark:text-[#fff]">注册</div>
+    <div class="text-2xl pb-4 text-[#333] dark:text-[#fff]">注册1</div>
     <n-form
       class="w-full"
       ref="formRef"
